@@ -6,11 +6,8 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
 import {shell} from 'electron';
-import {AppState} from '../reducers';
-import {Store} from '@ngrx/store';
 
 /*
  * App Component

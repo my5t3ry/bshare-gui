@@ -1,0 +1,18 @@
+<button md-icon-button [mdMenuTriggerFor]="menu">
+  <span> Menu </span>
+</button>
+<md-menu #menu="mdMenu">
+  <button md-menu-item>
+    <span>Redial</span>
+  </button>
+  <button md-menu-item disabled>
+    <span>Check voicemail</span>
+  </button>
+  <button md-menu-item>
+    <span>Disable alerts</span>
+  </button>
+</md-menu>
+<button md-button>foo</button>
+<main>
+  <router-outlet></router-outlet>
+</main>

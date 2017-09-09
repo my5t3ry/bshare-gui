@@ -129,9 +129,9 @@ module.exports = function (options) {
          * See: https://github.com/webpack/raw-loader
          */
         {
-          test: /\.css$/,
-          loader: ['to-string-loader', 'css-loader'],
-          exclude: [helpers.root('src/index.html')]
+          test: /.css$/,
+          exclude: helpers.root('src', 'app'),
+          loaders: [ExtractTextPlugin.extract('style', 'css-loader'), 'to-string', 'css']
         },
 
         /**
@@ -140,9 +140,8 @@ module.exports = function (options) {
          * See: https://github.com/webpack/raw-loader
          */
         {
-            test: /\.scss$/,
-            loader: ['raw-loader', 'sass-loader'],
-            exclude: [helpers.root('src/index.html')]
+          test: /\.scss/,
+          loaders: ['style', 'css', 'sass']
         },
 
         /**
