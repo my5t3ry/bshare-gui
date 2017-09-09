@@ -1,10 +1,11 @@
-import { Routes } from '@angular/router';
-import { NoContentComponent } from '../no-content';
+import {Routes} from '@angular/router';
+import {NoContentComponent} from '../no-content';
 
-import { DataResolver } from './projects.resolver';
 import {ProjectsComponent} from "./projects.component";
+import {PreferencesComponent} from "../preferences/preferences.component";
 
 export const ROUTES: Routes = [
-  { path: '',      component: ProjectsComponent },
-  { path: '**',    component: NoContentComponent },
+  {path: '', component: ProjectsComponent},
+  {path: 'preferences', component: PreferencesComponent},
+  {path: '**', component: NoContentComponent},
 ];

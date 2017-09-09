@@ -29,7 +29,9 @@ export class PreferencesComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private homeActions: PreferenceActions,
-  ) {}
+  ) {
+    this.store.subscribe(data => console.log(data));
+  }
 
   public ngOnInit() {
     console.log('hello `Home` component');
@@ -39,6 +41,7 @@ export class PreferencesComponent implements OnInit {
   public submitState(value: string) {
     console.log('submitState', value);
     this.store.dispatch(this.homeActions.setValue(value));
+
     this.localState.value = '';
   }
 
