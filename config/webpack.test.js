@@ -140,8 +140,11 @@ module.exports = function (options) {
          * See: https://github.com/webpack/raw-loader
          */
         {
-          test: /\.scss/,
-          loaders: ['style', 'css', 'sass']
+          // Load SCSS
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'sass'],
+          // tell webpack where to look for sass/css files?
+          include: path.resolve(__dirname, 'node_modules')
         },
 
         /**
