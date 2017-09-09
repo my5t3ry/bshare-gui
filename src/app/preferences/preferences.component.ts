@@ -15,7 +15,7 @@ import { PreferenceActions } from './preferences.actions';
   selector: 'home',  // <home></home>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
-
+    PreferenceActions
   ],
   // Our list of styles in our component. We may add more to compose many styles together
   styleUrls: [ './preferences.component.css' ],

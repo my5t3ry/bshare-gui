@@ -93,7 +93,7 @@ module.exports = function(options) {
         tsConfigBase: tsConfigBase,
         customTsConfigFileName: customTsConfigFileName
       }),
-      
+
       PROD ? new UglifyJsPlugin({
         beautify: false, //prod
         output: {

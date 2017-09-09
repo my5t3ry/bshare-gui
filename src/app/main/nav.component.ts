@@ -6,24 +6,23 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
 import {shell} from 'electron';
-import {AppState} from '../reducers';
-import {Store} from '@ngrx/store';
 
 /*
  * App Component
  * Top Level Component
  */
 @Component({
+  selector: "app",
   encapsulation: ViewEncapsulation.None,
-  templateUrl: "projects.html"
+  styleUrls: [
+    'nav.component.css'
+  ],
+  templateUrl: "nav.html"
 })
-export class ProjectsComponent implements OnInit {
-  public angularclassLogo = 'assets/img/angular-electron.svg';
+export class NavComponent implements OnInit {
   public name = 'Angular Electron Dream Starter';
-  public url = 'https://github.com/colinskow/angular-electron-dream-starter';
 
   constructor() {
   }

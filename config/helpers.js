@@ -21,6 +21,7 @@ function isWebpackDevServer() {
 }
 
 var root = path.join.bind(path, ROOT);
+console.log(root);
 
 exports.hasProcessFlag = hasProcessFlag;
 exports.hasNpmFlag = hasNpmFlag;

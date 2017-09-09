@@ -249,7 +249,7 @@ For example to use Bootstrap as an external stylesheet:
 1) Create a `styles.scss` file (name doesn't matter) in the `src/styles` directory.
 2) `npm install` the version of Boostrap you want.
 3) In `styles.scss` add `@import 'bootstrap/scss/bootstrap.scss';`
-4) In `src/app/projects.module.ts` add underneath the other import statements: `import '../styles/styles.scss';`
+4) In `src/app/app.module.ts` add underneath the other import statements: `import '../styles/styles.scss';`
 
 # Lazy Loading
 When you lazy load a module in your router config, it will go into a separate chunk and the browser will download the code after your main application is finished loading. This results in faster start-up time.
@@ -260,7 +260,7 @@ You can make a module lazy load by using the `loadChildren` syntax in your route
 { path: 'detail', loadChildren: './+detail#DetailModule'}
 ```
 
-To make sure TypeScript compiles your lazy-loaded modules, declare them in `./src/app/lazy-loaded.ts` with an import statement. Declaring the modules allows TypeScript to only compile the necessary files. Previously TS would compile every single `.ts` file in your project tree on every single build which was inefficient and lead to issues.
+To make sure TypeScript compiles your lazy-loaded modules, declare them in `src/app/lazy-loaded.ts` with an import statement. Declaring the modules allows TypeScript to only compile the necessary files. Previously TS would compile every single `.ts` file in your project tree on every single build which was inefficient and lead to issues.
 
 # Contributing
 You can include more examples as components but they must introduce a new concept such as `Home` component (separate folders), and Todo (services). I'll accept pretty much everything so feel free to open a Pull-Request

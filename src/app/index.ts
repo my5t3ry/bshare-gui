@@ -1,2 +1,2 @@
 // App
-export * from './projects/projects.module';
+export * from './app.module';

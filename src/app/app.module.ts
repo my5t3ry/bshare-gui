@@ -24,19 +24,20 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { ENV_PROVIDERS } from '../environment';
-import { ROUTES } from './projects.routes';
-import { rootReducer } from '../reducers';
+import { ENV_PROVIDERS } from './environment';
+import { ROUTES } from './main/app.routes';
+import { rootReducer } from './reducers';
 // App is our top level component
-import { ProjectsComponent } from './projects.component';
+import { ProjectsComponent } from './projects/projects.component';
 import { APP_BASE_HREF } from '@angular/common';
-import { APP_RESOLVER_PROVIDERS } from './projects.resolver';
-import { AppState } from '../reducers';
-import { NoContentComponent } from '../no-content';
+import { APP_RESOLVER_PROVIDERS } from './projects/projects.resolver';
+import { AppState } from './reducers';
+import { NoContentComponent } from './no-content';
 
-import '../../styles/styles.scss';
-import '../../styles/headings.css';
-import {PreferencesComponent} from "../preferences/preferences.component";
+import '../styles/styles.scss';
+import '../styles/headings.css';
+import {PreferencesComponent} from "./preferences/preferences.component";
+import {NavComponent} from "./main/nav.component";
 
 declare const ENV: string;
 
@@ -68,14 +69,16 @@ if (ENV === 'development') {
  * `ProjectsModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ ProjectsComponent ],
+  bootstrap: [ NavComponent ],
   declarations: [
     ProjectsComponent,
     PreferencesComponent,
+    NavComponent,
     NoContentComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
+
     FormsModule,
     HttpModule,
     StoreModule.provideStore(rootReducer),
@@ -88,7 +91,7 @@ if (ENV === 'development') {
     APP_PROVIDERS
   ]
 })
-export class ProjectsModule {
+export class AppModule {
 
   constructor(
     public appRef: ApplicationRef,
