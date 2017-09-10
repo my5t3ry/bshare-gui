@@ -40,5 +40,6 @@
   "buildOnSave": false,
   "atom": {
     "rewriteTsconfig": false
-  }
+  },
+  "paths": { "@angular/*": [ "../node_modules/@angular/*" ] }
 }

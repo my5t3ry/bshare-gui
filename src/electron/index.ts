@@ -1,15 +1,16 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import {app, BrowserWindow, ipcMain, dialog} from 'electron';
 import path from 'path';
 import url from 'url';
 import './dev-extensions';
 
+
 declare const DEV_SERVER: boolean;
 
 const indexUrl = url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  });
+  pathname: path.join(__dirname, 'index.html'),
+  protocol: 'file:',
+  slashes: true
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -17,7 +18,7 @@ let win;
 
 function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow({width: 800, height: 600,frame:false});
+  win = new BrowserWindow({width: 800, height: 600, frame: false});
   // and load the index.html of the app.
   win.loadURL(indexUrl);
 
@@ -69,3 +70,30 @@ ipcMain.on('show-dialog', (event, arg) => {
     detail: 'It\'s my pleasure to make your life better.'
   });
 });
+
+
+ipcMain.on('synchronous-message', (event, arg) => {
+  console.log(arg)  // prints "ping"
+  onProgress(arg);
+})
+
+function onProgress(progress: number) {
+  win.setProgressBar(progress || -1) // Progress bar works on all platforms
+}
+
+var numDoneInBackground = 0
+let dock;
+
+function onDone() {
+  dock = win.app.dock // Badge works only on Mac
+  if (!dock || win.isFocused()) return
+  numDoneInBackground++
+  dock.setBadge('' + numDoneInBackground)
+}
+
+// Subscribe to the window focus event. When that happens, hide the badge
+function onFocus() {
+  numDoneInBackground = 0
+  dock.setBadge('');
+}
+

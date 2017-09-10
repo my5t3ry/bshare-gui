@@ -24,12 +24,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { ENV_PROVIDERS } from '../environment';
+import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
-import { rootReducer } from '../reducers';
+import { rootReducer } from '../../reducers';
 import { APP_BASE_HREF } from '@angular/common';
 import { APP_RESOLVER_PROVIDERS } from '../projects/projects.resolver';
-import { AppState } from '../reducers';
+import { AppState } from '../../reducers';
 
 import {NavComponent} from "./nav.component";
 

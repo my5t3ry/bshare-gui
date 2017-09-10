@@ -64,6 +64,7 @@ module.exports = function (options) {
     module: {
 
       rules: [
+        {test: /\.js$/,  loader: 'babel?presets[]=es2015'},
 
         /**
          * Source map loader support for *.js files

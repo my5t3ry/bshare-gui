@@ -5,7 +5,7 @@ import {
 import { ipcRenderer } from 'electron';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../reducers';
+import { AppState } from '../../reducers';
 import { PreferenceActions } from './preferences.actions';
 
 @Component({

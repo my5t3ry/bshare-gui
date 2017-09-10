@@ -15,9 +15,9 @@ import {shell} from 'electron';
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
-  templateUrl: "share.html"
+  templateUrl: "friends.html"
 })
-export class ShareComponent implements OnInit {
+export class FriendsComponent implements OnInit {
 
   constructor() {
   }
