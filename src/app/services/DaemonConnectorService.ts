@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {StompService} from 'ng2-stomp-service';
 
-
-
+const {ipcRenderer} = require('electron');
 
 
 @Injectable()
@@ -33,21 +32,24 @@ export class DaemonConnectorService {
 
       //subscribe
       //subscribe
-      this.subscription = this.stomp.subscribe('/socket', this.response);
+      this.subscription = this.stomp.subscribe('/socket', function (data) {
+        ipcRenderer.send('show-dialog', data);
+      });
 
       //send data
-      this.stomp.send('/send/scan-path', JSON.parse('{"path": "test"}'));
+      this.stomp.send('/send/scan-path', JSON.parse('{"path": "/Users/sascha.bast/miko/lab"}'));
 
       //unsubscribe
-      this.subscription.unsubscribe();
-
-      //disconnect
-      this.stomp.disconnect().then(() => {
-        console.log('Connection closed')
-      })
+      // this.subscription.unsubscribe();
+      //
+      // //disconnect
+      // this.stomp.disconnect().then(() => {
+      //   console.log('Connection closed')
+      // })
 
     });
   }
+
   public response = (data) => {
     console.log(data)
   }

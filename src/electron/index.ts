@@ -66,7 +66,7 @@ ipcMain.on('show-dialog', (event, arg) => {
     type: 'info',
     buttons: ['OK'],
     title: 'Native Dialog',
-    message: 'I\'m a native dialog!',
+    message: JSON.stringify(arg),
     detail: 'It\'s my pleasure to make your life better.'
   });
 });
