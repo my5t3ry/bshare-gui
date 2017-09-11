@@ -25,27 +25,15 @@ export class DaemonConnectorService {
       queue: {'init': false}
     });
 
-    //start connection
     this.stomp.startConnect().then(() => {
       this.stomp.done('init');
       console.log('connected');
 
-      //subscribe
-      //subscribe
       this.subscription = this.stomp.subscribe('/socket', function (data) {
         ipcRenderer.send('show-dialog', data);
       });
 
-      //send data
       this.stomp.send('/send/scan-path', JSON.parse('{"path": "/Users/sascha.bast/miko/lab"}'));
-
-      //unsubscribe
-      // this.subscription.unsubscribe();
-      //
-      // //disconnect
-      // this.stomp.disconnect().then(() => {
-      //   console.log('Connection closed')
-      // })
 
     });
   }
