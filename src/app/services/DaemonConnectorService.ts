@@ -17,8 +17,6 @@ export class DaemonConnectorService {
 
   connect() {
 
-
-    //configuration
     this.stomp.configure({
       host: 'http://localhost:8080/catapult-daemon/connector',
       debug: true,
