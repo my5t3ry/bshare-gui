@@ -9,6 +9,9 @@ import {
 import 'rxjs/add/operator/take';
 import {shell} from 'electron';
 import {DaemonConnectorService} from "../../services/DaemonConnectorService";
+import {AppState} from "../../reducers/root";
+import {Store} from "@ngrx/store";
+import {ProjectActions} from "./projectActions.actions";
 
 /*
  * App Component
@@ -17,19 +20,20 @@ import {DaemonConnectorService} from "../../services/DaemonConnectorService";
 @Component({
   encapsulation: ViewEncapsulation.None,
   templateUrl: "projects.html",
-  providers: [DaemonConnectorService]
+  providers: [DaemonConnectorService, ProjectActions]
 })
 export class ProjectsComponent implements OnInit {
-  public angularclassLogo = 'assets/img/angular-electron.svg';
-  public name = 'Angular Electron Dream Starter';
-  public url = 'https://github.com/colinskow/angular-electron-dream-starter';
 
-  constructor(daemonConnectorService: DaemonConnectorService) {
-    daemonConnectorService.connect();
+  ngOnInit(): void {
   }
 
-  public ngOnInit() {
+  public name = 'Angular Electron Dream Starter';
+  public url = 'https://github.com/colinskow/angular-electron-dream-starter';
+  private daemonConnectService: any;
 
+  constructor(private store: Store<AppState>, daemonConnectorService: DaemonConnectorService) {
+    this.daemonConnectService = daemonConnectorService.connect();
+    this.store.subscribe(data => console.log(data));
   }
 
   public openURL(url) {
