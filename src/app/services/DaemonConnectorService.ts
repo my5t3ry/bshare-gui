@@ -38,8 +38,6 @@ export class DaemonConnectorService {
     });
   }
 
-
-
   public response = (data) => {
   }
 }
