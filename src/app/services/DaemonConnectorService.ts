@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {StompService} from 'ng2-stomp-service';
 import {MessageProcessorService} from "./MessageProcessorService";
+import {ConfigurationService} from "./ConfigurationService";
 
 const {ipcRenderer} = require('electron');
 
@@ -20,7 +21,7 @@ export class DaemonConnectorService {
   connect() {
 
     this.stomp.configure({
-      host: 'http://localhost:8080/catapult-daemon/connector',
+      host: ConfigurationService.DAEMON_HOST + 'catapult-daemon/connector',
       debug: true,
       queue: {'init': false}
     });
@@ -32,9 +33,7 @@ export class DaemonConnectorService {
       this.subscription = this.stomp.subscribe('/socket', (data) => {
         this.messageProcessorService.processMessage(data);
       });
-
       this.stomp.send('/send/scan-path', JSON.parse('{"path": "/Users/sascha.bast/miko/lab"}'));
-
     });
   }
 

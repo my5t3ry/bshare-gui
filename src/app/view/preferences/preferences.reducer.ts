@@ -8,7 +8,7 @@ export interface PreferenceReducer {
 
 export const initialState: PreferenceReducer = {};
 
-export function homeReducer(state = initialState, action: Action): PreferenceReducer {
+export function preferenceReducer(state = initialState, action: Action): PreferenceReducer {
   switch (action.type) {
 
     case PreferenceActions.SET_VALUE: {

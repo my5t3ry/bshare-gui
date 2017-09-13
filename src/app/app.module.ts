@@ -32,8 +32,7 @@ import {NavComponent} from "./view/nav/nav.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MessagesComponent} from "./view/messages/messages.component";
 import {FriendsComponent} from "./view/friends/friends.component";
-import {DaemonConnectorModule} from "./services/DaemonConnectorModule";
-import {MessageProcessorModule} from "./services/MessageProcessorModule";
+
 import {ProjectActions} from "./view/projects/projectActions.actions";
 import {MessageProcessorService} from "./services/MessageProcessorService";
 import {DaemonConnectorService} from "./services/DaemonConnectorService";

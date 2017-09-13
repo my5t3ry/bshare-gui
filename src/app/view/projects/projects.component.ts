@@ -12,6 +12,8 @@ import {DaemonConnectorService} from "../../services/DaemonConnectorService";
 import {AppState} from "../../reducers/root";
 import {Store} from "@ngrx/store";
 import {ProjectActions} from "./projectActions.actions";
+import {Http, Response} from "@angular/http";
+import {ConfigurationService} from "../../services/ConfigurationService";
 
 /*
  * App Component
@@ -23,21 +25,31 @@ import {ProjectActions} from "./projectActions.actions";
   providers: [DaemonConnectorService, ProjectActions]
 })
 export class ProjectsComponent implements OnInit {
+  public localState = {abletonProjects: []};
+  private http: Http;
 
   ngOnInit(): void {
   }
 
   public name = 'Angular Electron Dream Starter';
   public url = 'https://github.com/colinskow/angular-electron-dream-starter';
-  private daemonConnectService: any;
 
-  constructor(private store: Store<AppState>, daemonConnectorService: DaemonConnectorService) {
-    this.daemonConnectService = daemonConnectorService.connect();
-    this.store.subscribe(data => console.log(data));
+  constructor(private store: Store<AppState>, http: Http, daemonConnectService : DaemonConnectorService) {
+    daemonConnectService.connect();
+    this.store.subscribe(data => this.processEvents(data));
+  }
+
+  private processEvents(data) {
+    console.log(data);
   }
 
   public openURL(url) {
     shell.openExternal(url);
+  }
+
+
+  private refreshProjects() {
+    this.http.get(ConfigurationService.DAEMON_HOST + "project/").map((res: Response) => console.log(res.json()));
   }
 
 }
