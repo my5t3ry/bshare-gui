@@ -30,7 +30,7 @@ export class DaemonConnectorService {
       console.log('connected');
 
       this.subscription = this.stomp.subscribe('/socket', (data) => {
-        this.   messageProcessorService.processMessage(data);
+        this.messageProcessorService.processMessage(data);
       });
 
       this.stomp.send('/send/scan-path', JSON.parse('{"path": "/Users/sascha.bast/miko/lab"}'));
