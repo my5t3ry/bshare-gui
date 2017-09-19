@@ -21,7 +21,7 @@ export class DaemonConnectorService {
   connect() {
 
     this.stomp.configure({
-      host: ConfigurationService.DAEMON_HOST + 'catapult-daemon/connector',
+      host: ConfigurationService.DAEMON_HOST + '/connector',
       debug: true,
       queue: {'init': false}
     });

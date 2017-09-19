@@ -26,7 +26,6 @@ import {ConfigurationService} from "../../services/ConfigurationService";
 })
 export class ProjectsComponent implements OnInit {
   public localState = {abletonProjects: []};
-  private http: Http;
 
   ngOnInit(): void {
   }
@@ -34,13 +33,16 @@ export class ProjectsComponent implements OnInit {
   public name = 'Angular Electron Dream Starter';
   public url = 'https://github.com/colinskow/angular-electron-dream-starter';
 
-  constructor(private store: Store<AppState>, http: Http, daemonConnectService : DaemonConnectorService) {
+  constructor(private store: Store<AppState>,private http: Http, daemonConnectService: DaemonConnectorService) {
     daemonConnectService.connect();
     this.store.subscribe(data => this.processEvents(data));
   }
 
   private processEvents(data) {
-    console.log(data);
+    switch (data.lastAction.type) {
+      case "PROJECTS_SCANNED" :
+        this.refreshProjects();
+    }
   }
 
   public openURL(url) {
@@ -49,7 +51,9 @@ export class ProjectsComponent implements OnInit {
 
 
   private refreshProjects() {
-    this.http.get(ConfigurationService.DAEMON_HOST + "project/").map((res: Response) => console.log(res.json()));
+    this.http.get(ConfigurationService.DAEMON_HOST + "project/").map((res: Response) =>
+      console.log(res.json())
+    );
   }
 
 }
